@@ -271,7 +271,7 @@ impl Ord for Hand {
 pub fn solve() {
     let contents = fs::read_to_string("resources/d7.txt")
         .expect("Cannot open file to read");
-    let mut lines = contents.lines();
+    let lines = contents.lines();
     let mut hands: Vec<Hand> = vec![];
     for line in lines {
         let mut sp = line.split_ascii_whitespace();

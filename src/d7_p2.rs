@@ -189,7 +189,7 @@ impl Hand {
     }
 
     fn replace_jokers(&self, f: fn(Hand) -> bool) -> bool {
-        let mut v_cards = vec![self.cards.0, self.cards.1, self.cards.2, self.cards.3, self.cards.4];
+        let v_cards = vec![self.cards.0, self.cards.1, self.cards.2, self.cards.3, self.cards.4];
         let mut joker_indices = vec![];
         for (i, card) in v_cards.iter().enumerate() {
             if card.value == 'J' { joker_indices.push(i); }
@@ -315,7 +315,7 @@ impl Ord for Hand {
 pub fn solve() {
     let contents = fs::read_to_string("resources/d7.txt")
         .expect("Cannot open file to read");
-    let mut lines = contents.lines();
+    let lines = contents.lines();
     let mut hands: Vec<Hand> = vec![];
     for line in lines {
         let mut sp = line.split_ascii_whitespace();

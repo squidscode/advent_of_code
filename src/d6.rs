@@ -9,7 +9,7 @@ pub fn solve() {
     let mut l1 = line_1.split_ascii_whitespace();
     let mut l2 = line_2.split_ascii_whitespace();
     l1.next(); l2.next();
-    let mut ans = 1u64;
+    let _ans = 1u64;
     let mut time: String = String::from("");
     let mut distance: String = String::from("");
     for races in l1.zip(l2) {

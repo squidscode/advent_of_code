@@ -1,6 +1,6 @@
 use std::cmp::Ordering;
 use std::fs;
-use std::collections::{BTreeMap, BTreeSet};
+use std::collections::{BTreeSet};
 
 #[derive(Debug, PartialEq, Eq, PartialOrd)]
 struct Span {

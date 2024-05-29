@@ -1,6 +1,6 @@
-use std::env;
+
 use std::fs;
-use std::string;
+
 
 pub fn solve() {
     let file_path = "resources/day1_input.txt";

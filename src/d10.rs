@@ -1,6 +1,6 @@
 use std::fs;
 use std::collections::BTreeSet;
-use std::cmp::{min, max};
+
 
 pub fn solve() {
     let path = "resources/d10.txt";
@@ -22,7 +22,7 @@ pub fn solve() {
         }
     }
     let mut distance_values = maze.iter().map(|vec| {
-        vec.iter().map(|c| {0usize}).collect::<Vec<usize>>()
+        vec.iter().map(|_c| {0usize}).collect::<Vec<usize>>()
     }).collect::<Vec<Vec<usize>>>();
     let mut q: Vec<(usize, usize)> = vec![(srow, scol)];
     let mut seen: BTreeSet<(usize, usize)> = BTreeSet::new(); seen.insert((srow, scol));
@@ -94,7 +94,7 @@ pub fn solve() {
     });
 
     // now we calculate the boundary for the loop
-    let mut boundary: Vec<Vec<bool>> = maze.iter().map(|f| {f.iter().map(|c| {false}).collect()}).collect();
+    let mut boundary: Vec<Vec<bool>> = maze.iter().map(|f| {f.iter().map(|_c| {false}).collect()}).collect();
     q.push(farthest_point);
     boundary[farthest_point.0][farthest_point.1] = true;
     while q.len() != 0 {
@@ -121,7 +121,7 @@ pub fn solve() {
      */
 
     // now we mark interior by using top-left coloring rules.
-    let mut interior: Vec<Vec<bool>> = maze.iter().map(|f| {f.iter().map(|c| {false}).collect()}).collect();
+    let mut interior: Vec<Vec<bool>> = maze.iter().map(|f| {f.iter().map(|_c| {false}).collect()}).collect();
     let start_replacement = match (distance_values[srow-1][scol] == 1, distance_values[srow][scol + 1] == 1, distance_values[srow+1][scol] == 1, distance_values[srow][scol-1] == 1) {
         (true, true, false, false) => 'L',
         (true, false, true, false) => '|',
@@ -132,7 +132,7 @@ pub fn solve() {
         _ => panic!("Uh oh, I messed up the logic here!")
     };
     for (row, vec) in boundary.iter().enumerate().rev() {
-        for (col, b) in vec.iter().enumerate().rev() {
+        for (col, _b) in vec.iter().enumerate().rev() {
             if row == n - 1 || col == m - 1 {continue;}
             if boundary[row][col] {
                 let mut c = maze[row][col];
@@ -201,7 +201,7 @@ pub fn solvev1() {
         }
     }
     let mut distance_values = maze.iter().map(|vec| {
-        vec.iter().map(|c| {0usize}).collect::<Vec<usize>>()
+        vec.iter().map(|_c| {0usize}).collect::<Vec<usize>>()
     }).collect::<Vec<Vec<usize>>>();
     let mut q: Vec<(usize, usize)> = vec![(srow, scol)];
     let mut seen: BTreeSet<(usize, usize)> = BTreeSet::new(); seen.insert((srow, scol));
@@ -267,17 +267,17 @@ pub fn solvev1() {
 }
 
 pub fn has_north_connection(c: char) -> bool {
-    return (c == '|' || c == 'L' || c == 'J' || c == 'S');
+    return c == '|' || c == 'L' || c == 'J' || c == 'S';
 }
 
 pub fn has_east_connection(c: char) -> bool {
-    return (c == '-' || c == 'L' || c == 'F' || c == 'S');
+    return c == '-' || c == 'L' || c == 'F' || c == 'S';
 }
 
 pub fn has_south_connection(c: char) -> bool {
-    return (c == '|' || c == 'F' || c == '7' || c == 'S');
+    return c == '|' || c == 'F' || c == '7' || c == 'S';
 }
 
 pub fn has_west_connection(c: char) -> bool {
-    return (c == '-' || c == 'J' || c == '7' || c == 'S');
+    return c == '-' || c == 'J' || c == '7' || c == 'S';
 }

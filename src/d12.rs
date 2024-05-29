@@ -172,7 +172,7 @@ fn smart_permute(rec: Record, cache: &mut BTreeMap<(String, String), usize>) -> 
 
 
 // Despite this being faster than the usual permute, this is still TOO SLOW for this problem.
-fn dp_permute(rec: Record, mut cache: &mut BTreeMap<(String, String), usize>) -> usize {
+fn dp_permute(rec: Record, cache: &mut BTreeMap<(String, String), usize>) -> usize {
     let key = rec_to_key(&rec);
     if cache.contains_key(&key) {
         return cache[&key];
@@ -199,8 +199,8 @@ fn dp_permute(rec: Record, mut cache: &mut BTreeMap<(String, String), usize>) ->
 
     // chars.first() is either '?' or '#'
     let mut new_groups = rec.groups.clone();
-    let mut l = new_groups.remove(0);
-    let mut block = (0..l).map(|i| {'#'}).collect::<Vec<char>>();
+    let l = new_groups.remove(0);
+    let block = (0..l).map(|_i| {'#'}).collect::<Vec<char>>();
 
     if chars.len() <= block.len() { return if new_groups.len() == 0 && chars.len() == block.len() && chars.iter().all(|c| {*c != '.'}) {1} else {0} }
     
@@ -257,8 +257,8 @@ fn permute(rec: Record) -> usize {
 
     // chars.first() is either '?' or '#'
     let mut new_groups = rec.groups.clone();
-    let mut l = new_groups.remove(0);
-    let mut block = (0..l).map(|i| {'#'}).collect::<Vec<char>>();
+    let l = new_groups.remove(0);
+    let block = (0..l).map(|_i| {'#'}).collect::<Vec<char>>();
 
     if chars.len() <= block.len() { return if new_groups.len() == 0 && chars.len() == block.len() && chars.iter().all(|c| {*c != '.'}) {1} else {0} }
     
@@ -292,8 +292,8 @@ fn permute(rec: Record) -> usize {
 }
 
 fn brute_permute(rec: Record) -> usize {
-    let mut chars = rec.gears.clone();
-    let total = rec.groups.iter().fold(0, |a, b| {a+b});
+    let _chars = rec.gears.clone();
+    let _total = rec.groups.iter().fold(0, |a, b| {a+b});
 
     unimplemented!()
 }

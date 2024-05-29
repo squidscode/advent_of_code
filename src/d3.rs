@@ -8,8 +8,8 @@ pub fn solve() {
     let mut ln = 0usize;
     let mut symbol_set = BTreeSet::<(usize, usize)>::new();
     for str in str_contents.lines() {
-        let mut matches = str.match_indices(|c: char| {c == '*'});
-        for (lft, s) in matches {
+        let matches = str.match_indices(|c: char| {c == '*'});
+        for (lft, _s) in matches {
             println!("inserting {:?}", (ln, lft));
             symbol_set.insert((ln, lft));
         }
@@ -24,7 +24,7 @@ pub fn solve() {
                 let v = mat.parse::<usize>().unwrap();
                 let (t, b) = (ln.max(1) - 1, ln + 1);
                 let (l, r) = (ind.max(1) - 1, ind + mat.len());
-                let mut is_part_num = false;
+                let _is_part_num = false;
                 for line_num in t..b+1 {
                     for row_num in l..r+1 {
                         if symbol_set.contains(&(line_num, row_num)) {
@@ -58,8 +58,8 @@ pub fn solvev1() {
     let mut ln = 0usize;
     let mut symbol_set = BTreeSet::<(usize, usize)>::new();
     for str in str_contents.lines() {
-        let mut matches = str.match_indices(|c: char| {c != '.' && !c.is_numeric()});
-        for (lft, s) in matches {
+        let matches = str.match_indices(|c: char| {c != '.' && !c.is_numeric()});
+        for (lft, _s) in matches {
             // println!("inserting {:?}", (ln, lft));
             symbol_set.insert((ln, lft));
         }

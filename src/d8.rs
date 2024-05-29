@@ -1,6 +1,6 @@
-use std::fs;
+
 use std::collections::BTreeMap;
-use std::ops::Index;
+
 
 pub fn solve() {
     let s = std::fs::read_to_string("resources/d8.txt").unwrap();
@@ -29,11 +29,11 @@ pub fn solve() {
     println!("Current node has {} values", current_node.len());
     let mut ind = 0;
     let mut steps = 0usize;
-    let original_nodes = current_node.clone();
+    let _original_nodes = current_node.clone();
     let mut history = current_node.iter().map(|s| {vec![(0usize, *s)]}).collect::<Vec<_>>();
     let mut history_complete_bits = current_node.iter().map(|_| {0}).collect::<Vec<_>>();
     let mut history_next = current_node.iter().map(|s| {(0, *s)}).collect::<Vec<_>>();
-    let mut indices = current_node.iter().map(|s| {0usize}).collect::<Vec<_>>();
+    let mut indices = current_node.iter().map(|_s| {0usize}).collect::<Vec<_>>();
     while !current_node.iter().all(|s| {s.to_string().ends_with('Z')}) 
         && !history_complete_bits.iter().all(|bit| {*bit == 1}) 
         {
@@ -95,7 +95,7 @@ pub fn solve() {
         f.0 - f.1
     }).collect::<Vec<usize>>();
     println!("cycle length : {:?}", cycle_length);
-    bit_strings.iter().enumerate().zip(&indices).for_each(|((i, str), offset)| {
+    bit_strings.iter().enumerate().zip(&indices).for_each(|((_i, str), offset)| {
         println!("((STEPS - {}) % ({} - {})) + {} == {}", offset, str.len(), offset, offset, 
             str.chars().position(|c| {c == '1'}).unwrap());
     });
