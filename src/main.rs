@@ -12,10 +12,11 @@ mod d10;
 mod d11;
 mod d12;
 mod d13;
+mod d14;
 mod util;
 
 use util::scan;
 
 fn main() {
-    d13::solve()
+    d14::solve()
 }
